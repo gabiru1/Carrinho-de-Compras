@@ -47,4 +47,6 @@ async function apiItens() {
   .appendChild(createProductItemElement(product)));
 }
 
-window.onload = () => { apiItens() }
+window.onload = () => { 
+  apiItens();
+};
