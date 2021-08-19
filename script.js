@@ -68,6 +68,10 @@ document.addEventListener('click', ({ target }) => {
   if (target.classList.contains('item__add')) {
     return addToCart(getSkuFromProductItem(target.parentElement));
   }
+  if (target.classList.contains('empty-cart')) {
+    const cartLi = document.querySelector('.cart__items');
+    cartLi.innerHTML = '';
+  }
 });
 
 window.onload = () => {
