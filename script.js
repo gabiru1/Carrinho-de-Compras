@@ -30,7 +30,7 @@ function getSkuFromProductItem(item) {
 
 function cartItemClickListener({ target }) {
   // coloque seu código aqui
-  document.getElementsByClassName('cart__items').removeChild(target);
+  document.querySelector('.cart__items').removeChild(target);
 }
 
 function createCartItemElement({ id: sku, title: name, price: salePrice }) {
@@ -70,8 +70,7 @@ document.addEventListener('click', ({ target }) => {
     return addToCart(getSkuFromProductItem(target.parentElement));
   }
   if (target.classList.contains('empty-cart')) {
-    const cartLi = document.querySelector('.cart__items');
-    cartLi.innerHTML = '';
+    document.querySelector('section .cart__items').innerHTML = '';
   }
 });
 
