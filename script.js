@@ -28,6 +28,15 @@ function getSkuFromProductItem(item) {
   return item.querySelector('span.item__sku').innerText;
 }
 
+async function sumAsync() {
+  const cartList = Array.from(document.querySelectorAll('.cart__item'));
+  const cartNames = cartList.map(({ innerText }) => innerText);
+  const priceList = cartNames.map((cartName) => +cartName.split('PRICE: $')[1]);
+  const totalPriceList = priceList.reduce((sum, value) => sum + value, 0);
+  const totalPriceString = document.querySelector('.total-price');
+  totalPriceString.innerText = totalPriceList;
+}
+
 function cartItemClickListener({ target }) {
   // coloque seu código aqui
   document.querySelector('.cart__items').removeChild(target);
@@ -66,15 +75,6 @@ async function addToCart(id) {
   const liItem = document.querySelector('.cart__items');
   liItem.appendChild(createCartItemElement(fechItem));
   await sumAsync();
-}
-
-async function sumAsync() {
-  const cartList = Array.from(document.querySelectorAll('.cart__item'));
-  const cartNames = cartList.map(({ innerText }) => innerText);
-  const priceList = cartNames.map((cartName) => +cartName.split('PRICE: $')[1]);
-  const totalPriceList = priceList.reduce((sum, value) => sum + value, 0);
-  const totalPriceString = document.querySelector('.total-price');
-  totalPriceString.innerText = totalPriceList;
 }
 
 document.addEventListener('click', ({ target }) => {
